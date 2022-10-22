@@ -3,5 +3,5 @@ __pycache__
 .vscode
 config.py
 python.news.html
-.db
+webapp.db
 run.bat
