@@ -2,7 +2,8 @@ from datetime import datetime
 from bs4 import BeautifulSoup
 import requests
 
-from webapp.model import db, News
+from webapp.db import db
+from webapp.news.models import News
 
 
 def get_html(url):
@@ -14,7 +15,6 @@ def get_html(url):
     except(requests.RequestException, ValueError):
         print("Сетевая ошибка")
         return False
-
 
 def get_python_news():
     html = get_html("https://www.python.org/blogs")
@@ -32,15 +32,9 @@ def get_python_news():
                 published = datetime.now()
             save_news(title, url, published)
 
-
 def save_news(title, url, published):
     news_exists = News.query.filter(News.url==url)
     if not news_exists:
         news_news = News(title=title, url=url, published=published)
         db.session.add(news_news)
         db.session.commit()
-
-
-# if __name__=='__main__':
-#     time = get_python_news()
-#     print(time[1])
