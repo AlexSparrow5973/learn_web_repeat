@@ -5,3 +5,4 @@ config.py
 python.news.html
 webapp.db
 run.bat
+.vscode/

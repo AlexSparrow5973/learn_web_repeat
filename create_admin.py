@@ -9,8 +9,9 @@ app = create_app()  # создаем приложение
 
 with app.app_context():  # в контексте приложения запрашиваем имя пльзователя
     username = input("Введите имя: ")
+    # проверяем есть такой пользователь в базе
+    if User.query.filter(User.username == username).count():
 
-    if User.query.filter(User.username==username).count():  # проверяем есть такой пользователь в базе
         print("Такой пользователь уже существует")
         sys.exit(0)
 
@@ -20,8 +21,8 @@ with app.app_context():  # в контексте приложения запра
     if not password1 == password2:
         print("Пороли не совпадают")
         sys.exit(0)
-
-    new_user = User(username=username, role="admin")  # создаем экземпляр класса User с ролью "админ"
+    # создаем экземпляр класса User с ролью "админ"
+    new_user = User(username=username, role="admin")
     new_user.set_password(password1)  # хеш пароля
 
     db.session.add(new_user)  # добавляем админа в базу
