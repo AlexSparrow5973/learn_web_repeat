@@ -58,5 +58,8 @@ def process_reg():
         db.session.commit()
         flash('Вы успешно зарегистрировались')
         return redirect(url_for('user.login'))
-    flash('Укажите корректные значения в полях регистрации')
-    return redirect(url_for('user.registr'))
+    else:
+        for field, errors in form.errors.items():
+            for error in errors:
+                flash(f'В поле {getattr(form, field).label.text} ошибка,\n {error}')
+        return redirect(url_for('user.registr'))
