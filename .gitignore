@@ -6,3 +6,5 @@ python.news.html
 webapp.db
 run.bat
 .vscode/
+
+python_news.py
