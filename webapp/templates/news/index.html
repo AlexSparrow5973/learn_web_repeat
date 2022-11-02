@@ -15,7 +15,8 @@
         {% endwith %}
         {% for news in news_list %}
         <h3><a href="{{ url_for('news.single_news', news_id=news.id) }}" target="_blank">{{ news.title }}</a></h3>
-        <p>{{ news.published.strftime('%b %d, %Y') }}</p>
+        <p>{{ news.published.strftime('%d.%m.%Y') }} |
+            Комментарии: {{ news.comments_count() }}</p>
         {% endfor %}
     </div>
     <div class="col-4">
