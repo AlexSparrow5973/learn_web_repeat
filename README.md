@@ -1,4 +1,4 @@
-#python-news
+# python-news
 
 Учебный проект основного трека Web курса Learn Python
 
